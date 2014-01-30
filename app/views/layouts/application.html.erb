@@ -5,9 +5,17 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
+    <% if flash[:alert] %> 
+    <div class="alert alert-danger"><%=flash[:alert]%></div>
+    <% elsif flash[:notice]  %>
+    <div class="alert alert-success"><%=flash[:notice]%></div>
+    <% elsif flash[:message] %>
+    <div class="alert alert-info"><%= flash[:message]%></div>
 
+  <% end %>
 <%= yield %>
 
 </body>

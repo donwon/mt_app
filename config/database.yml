@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: pm_database_development
+  database: mt_database_development
   pool: 5
   username: don
   password:
@@ -16,7 +16,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: pm_database_test
+  database: mt_database_test
   pool: 5
   username: don
   password:
