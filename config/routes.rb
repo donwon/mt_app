@@ -1,7 +1,12 @@
 MtApp::Application.routes.draw do
+  resources :discussions
+
   devise_for :users
-  resources :projects
-  resources :tasks
+  resources :projects do 
+    resources :tasks do
+      resources :assignments
+    end
+  end
 
   root 'projects#index'
 

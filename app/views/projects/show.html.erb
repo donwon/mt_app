@@ -1,34 +1,111 @@
-<p id="notice"><%= notice %></p>
-
+<div class=" center hero-unit well float-left">
+<div class="row">
+<div class="col-sm-4">
+<h2> Projects Show Detail Page</h2>
 <p>
   <strong>Title:</strong>
   <%= @project.title %>
 </p>
-
 <p>
   <strong>Client:</strong>
   <%= @project.client %>
 </p>
-
 <p>
   <strong>Body:</strong>
   <%= @project.body %>
 </p>
-
 <p>
   <strong>Status:</strong>
   <%= @project.status %>
 </p>
-
 <p>
   <strong>Category:</strong>
   <%= @project.category %>
 </p>
-
 <p>
   <strong>Hit counter:</strong>
   <%= @project.hit_counter %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'Destroy', @project , method: :delete, data: { confirm: 'Are you sure?' } %> |
+<hr>
+
+<h2> Completed Tasks </h2>
+  <% @project.tasks.each do |task| %>
+          <% if task.completed %>
+          <p> 
+          <strong>Name:</strong>
+          <%= task.name %>
+          <strong>due_date:</strong>
+          <%= task.due_date %>
+          <br><strong>completed:</strong>
+            YES<%= link_to 'Mark as Incomplete', edit_project_task_path(@project, task) %>
+          </p>
+          <p>
+          <strong>body:</strong>
+          <%= task.body %>
+          </p>
+          <%= link_to 'Destroy',project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+   <% end %>       
+
+<h2> Incomplete Tasks </h2>
+  <% @project.tasks.each do |task| %>
+        <% if !task.completed %>
+        <p>  
+        <strong>Name:</strong>
+        <%= task.name %>
+        <strong>due_date:</strong>
+        <%= task.due_date %>
+        <br><strong>completed:</strong>
+          No<%= link_to 'Mark as Complete', edit_project_task_path(@project, task) %>
+        </p>
+        <p>
+        <strong>body:</strong>
+        <%= task.body %>
+        </p>
+        <%= link_to 'Destroy',project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+    <% end %> 
+
+<h3> Add a Task </h3>
+<p><%#= link_to 'Add Task', new_project_task_path %>
+  <%= form_for [@project, @task] do |f| %>
+  
+  <div class="form-field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br>
+    <%= f.text_field :due_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+      <ul>
+      <% hidden_field_tag "task[user_ids][]", nil %>
+      <% User.all.each do |c| %>
+      
+        <li><%= check_box_tag "task[user_ids][]", c.id, @task.assignments.include?(c.id), id: dom_id(c) %>
+        <%= label_tag dom_id(c), c.email %></li>
+      
+      <%end%>
+    <div class="actions">
+      <%= f.submit %>
+   </div>
+
+<% end %>
+</div>
+
+
+<div class="clearfix">
+<div class="pull-right">
+<div class="col-sm-4">
+  <h1> Discussions</h1>
+</div>
+</div>

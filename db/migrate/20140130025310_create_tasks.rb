@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.string :due_date
       t.string :assignees
-      t.string :completed
+      t.boolean :completed, default: false
       t.references :user, index: true
       t.references :project, index: true
 

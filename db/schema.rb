@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130025310) do
+ActiveRecord::Schema.define(version: 20140130073309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["task_id"], name: "index_assignments_on_task_id", using: :btree
+  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -31,11 +41,12 @@ ActiveRecord::Schema.define(version: 20140130025310) do
     t.string   "name"
     t.string   "due_date"
     t.string   "assignees"
-    t.string   "completed"
+    t.boolean  "completed",  default: false
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "body"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree

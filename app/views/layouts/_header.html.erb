@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top navbar-default">
+      <div class="navbar-inner">
+        <div class="container">
+          <div id="logo">Don's <font color="red">Project</font> <font color="red">Management</font> Tool</div>
+          <nav>
+            <ul class="nav pull-right" id="nav_ul">
+              <span class="top-right-icons">
+              <li><%= link_to '<i class="fa fa-home fa-2x"></i>'.html_safe,  '/' %></li>
+              <li><%= link_to '<i class="fa fa-info-circle fa-2x"></i>'.html_safe,    '#' %></li>
+       
+
+
+              <% if user_signed_in? == false %>
+              <li id="log-in-red"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, new_user_session_path %></li>
+              <% else %>
+              <li id="log-off-green"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, destroy_user_session_path, method: :delete %></li>
+              <% end %>
+              </span>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
