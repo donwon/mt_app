@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 before_action :authenticate_user!
 
+
 def create
   
   task = Task.new params.require(:task).permit(:name,:due_date,:assignees,:completed,:body)
@@ -37,9 +38,6 @@ end
   end
 
 
-  def set_due_date
-     self.due_date = (Time.now + 1.days) 
-  end
 
 
 private 
