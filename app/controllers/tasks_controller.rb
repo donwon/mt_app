@@ -36,6 +36,12 @@ end
     end
   end
 
+
+  def set_due_date
+     self.due_date = (Time.now + 1.days) 
+  end
+
+
 private 
 
 

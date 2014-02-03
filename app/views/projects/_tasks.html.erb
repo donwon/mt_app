@@ -36,6 +36,8 @@
         <% end %>
     <% end %> 
 
+
+
 <h3> Add a Task </h3>
 <p><%#= link_to 'Add Task', new_project_task_path %>
   <%= form_for [@project, @task] do |f| %>
@@ -46,7 +48,7 @@
   </div>
   <div class="field">
     <%= f.label :due_date %><br>
-    <%= f.text_field :due_date , class: "form-control"%>
+    <%= f.date_field :due_date , class: "form-control"%>
   </div>
   <div class="field">
     <%= f.label :body %><br>
