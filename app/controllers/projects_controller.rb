@@ -12,6 +12,15 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @task = Task.new
+    @discussion = @project.discussions
+    @comment=Comment.new
+
+    
+    Rails.logger.info ">>>>>>>>>>>>>>"
+    Rails.logger.info @project.tasks
+    Rails.logger.info @project.discussions
+    # Rails.logger.info @discussion.comments
+    
     #@task = Task.all
   end
 

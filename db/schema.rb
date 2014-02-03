@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130073309) do
+ActiveRecord::Schema.define(version: 20140131081921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,30 @@ ActiveRecord::Schema.define(version: 20140130073309) do
 
   add_index "assignments", ["task_id"], name: "index_assignments_on_task_id", using: :btree
   add_index "assignments", ["user_id"], name: "index_assignments_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "discussion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["discussion_id"], name: "index_comments_on_discussion_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "discussions", force: true do |t|
+    t.string   "topic"
+    t.string   "title"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discussions", ["project_id"], name: "index_discussions_on_project_id", using: :btree
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"

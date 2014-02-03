@@ -1,0 +1,29 @@
+<h3> Add a discussion </h3>
+<p><%#= link_to 'Add Task', new_project_task_path %>
+  <%= form_for [@project, @discussion] do |f| %>
+  
+  <div class="form-field">
+    <%= f.label :topic %><br>
+    <%= f.text_field :topic %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+      
+      <%# hidden_field_tag "discussion[user_ids][]", nil %>
+      <%# User.all.each do |c| %>
+        <%#= check_box_tag "discussion[user_ids][]", c.id, @discussion.topics.include?(c.id), id: dom_id(c) %>
+        <%#= label_tag dom_id(c), c.email %>
+      <%#end%>
+
+    <div class="actions">
+      <%= f.submit %>
+   </div>
+
+<% end %>

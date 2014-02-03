@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
 
   has_many :tasks
   has_many :project_tasks, through: :tasks, source: :project
+
+  has_many :discussions
+
+  has_many :comments
+  has_many :commented_discussions, through: :comments, source: :discussion
+  
+
 end

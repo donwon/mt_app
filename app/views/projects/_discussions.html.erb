@@ -1,0 +1,47 @@
+
+  <h3><%= link_to 'Add a Discussion', new_project_discussion_path(@project) %></h3>
+  
+  <% @project.discussions.each do |discussion| %>
+    <p>  
+      <strong>Topic:</strong>
+      <%= discussion.topic %>
+      <strong>Title:</strong>
+      <%= discussion.title %>
+    </p>
+    <p>
+      <strong>User:</strong>
+      <%= discussion.user.email %>
+    </p>
+    <p>
+      <strong>body:</strong>
+      <%= discussion.body %>
+    </p>
+      <%= link_to 'Destroy',project_discussion_path(@project, discussion), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<h4> Comments </h4>
+  <% discussion.comments.each do |comment| %>
+  <p>
+    <strong>body:</strong>
+    <%= comment.body %>
+  </p>
+  <p>
+    <strong>comment by:</strong>
+    <%= comment.user.email %>
+  </p>
+  <p>
+    <strong>date posted:</strong>
+    <%= comment.created_at %>
+  </p>
+
+  <%= link_to 'Destroy',project_discussion_comment_path(@project, discussion, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %> 
+
+  <h3> Add a Comment </h3>
+  <%= form_for [@project, discussion, @comment] do |f| %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+
+    <%= f.submit %>
+  <% end %>
+    <% end %>
+

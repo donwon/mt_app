@@ -1,0 +1,67 @@
+<h2> Completed Tasks </h2>
+  <% @project.tasks.each do |task| %>
+    <% if task.completed %>
+
+      <strong>Name:</strong>
+      <%= task.name %>
+      <strong>due_date:</strong>
+      <%= task.due_date %>
+      <br><strong>completed:</strong>
+      YES  <%= link_to 'Mark as Incomplete', edit_project_task_path(@project, task) %>
+      </p>
+      <p>
+      <strong>body:</strong>
+      <%= task.body %>
+      </p>
+      <%= link_to 'Destroy',project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+   <% end %>       
+
+<h2> Incomplete Tasks </h2>
+  <% @project.tasks.each do |task| %>
+        <% if !task.completed %>
+        <p>  
+        <strong>Name:</strong>
+        <%= task.name %>
+        <strong>due_date:</strong>
+        <%= task.due_date %>
+        <br><strong>completed:</strong>
+          No  <%= link_to 'Mark as Complete', edit_project_task_path(@project, task) %>
+        </p>
+        <p>
+        <strong>body:</strong>
+        <%= task.body %>
+        </p>
+        <%= link_to 'Destroy',project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+    <% end %> 
+
+<h3> Add a Task </h3>
+<p><%#= link_to 'Add Task', new_project_task_path %>
+  <%= form_for [@project, @task] do |f| %>
+  
+  <div class="form-field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name , class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br>
+    <%= f.text_field :due_date , class: "form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+      <ul>
+      <% hidden_field_tag "task[user_ids][]", nil %>
+      <% User.all.each do |c| %>
+      
+        <li><%= check_box_tag "task[user_ids][]", c.id, @task.assignments.include?(c.id), id: dom_id(c) %>
+        <%= label_tag dom_id(c), c.email %></li>
+      
+      <%end%>
+    <div class="actions">
+      <%= f.submit %>
+   </div>
+
+   <%end%>
