@@ -1,0 +1,6 @@
+ Hello <%= @receiving_user.email %>,
+ <%= @sending_user.email %> has started a discussion for your project <%= @project.title %>.
+
+Clink the link to view discussion: 
+
+<%= link_to "Project", project_url(@project) %>

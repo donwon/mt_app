@@ -14,6 +14,7 @@ def create
   discussion.project = @project
   discussion.user = current_user
   if discussion.save
+    AppMailer.notify_project_owner(discussion).deliver
     redirect_to project_path(@project),  notice: "Save success"
   else
     redirect_to project_path(@project),  alert: "Error!"  

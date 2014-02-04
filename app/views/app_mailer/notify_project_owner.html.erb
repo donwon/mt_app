@@ -1,0 +1,6 @@
+<p> Hello <%= @receiving_user.email %>,</p>
+<p> <%= @sending_user.email %> has started a discussion for your project <%= @project.title %>. </p>
+
+<p> Clink the link to view discussion: </p>
+
+<%= link_to "Project", project_url(@project) %>

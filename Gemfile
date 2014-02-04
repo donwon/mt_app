@@ -16,7 +16,7 @@ gem 'bootstrap-sass', '>= 3.0.0'
 gem 'bootstrap-datepicker-rails'
 gem 'quiet_assets'
 gem 'devise'
-gem 'letter_opener'
+gem 'letter_opener', group: :development
 
 gem 'rails_12factor', group: :production
 
