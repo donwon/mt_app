@@ -4,7 +4,7 @@ namespace :project do
     10.times do |x|
       random_title = Faker::Lorem.sentence(3)
       random_client = Faker::Name.name
-      random_body = Faker::Lorem.sentance(4)
+      random_body = Faker::Lorem.sentence(300)
 
       random_pw = "fakepassword"
       random_email = Faker::Internet.email
