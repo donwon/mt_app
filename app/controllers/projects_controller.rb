@@ -51,15 +51,13 @@ class ProjectsController < ApplicationController
   def create
     #@project = Project.new(project_params)
     @project = current_user.projects.new project_params
-    respond_to do |format|
+    p "gerggregegerger"
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
+        redirect_to @project, notice: 'Project was successfully created.' 
       else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        redirect_to @project, alert: "Sorry Something Went Wrong"
       end
-    end
+ 
   end
 
   # PATCH/PUT /projects/1
