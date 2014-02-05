@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   recent_ids = []
   @projects_recent.each {|x| recent_ids << x.id }
-  @projects_by_hits = Project.x_most_recent(10)
+  @projects_by_hits = Project.order_by_hits
   Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
   Rails.logger.info recent_ids
 
@@ -51,7 +51,6 @@ class ProjectsController < ApplicationController
   def create
     #@project = Project.new(project_params)
     @project = current_user.projects.new project_params
-    p "gerggregegerger"
       if @project.save
         redirect_to @project, notice: 'Project was successfully created.' 
       else
