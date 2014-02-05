@@ -7,7 +7,8 @@ gem 'rails', '4.0.2'
 #gem 'sqlite3'
 
 gem 'pg'
-gem 'faker', group: :development
+
+gem 'faker'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

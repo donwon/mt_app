@@ -1,6 +1,8 @@
 namespace :project do
   desc "Generate default Projects"
   task :generate_default => :environment do
+    require 'faker'
+    
     10.times do |x|
       random_title = Faker::Lorem.sentence(3)
       random_client = Faker::Name.name
