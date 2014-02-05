@@ -4,8 +4,15 @@ namespace :project do
     10.times do |x|
       random_title = Faker::Lorem.sentence(3)
       random_client = Faker::Name.name
-      random_body = Faker::Lorem.sentence(250)
-      Project.create(title: random_title, client: random_client, body: random_body)
+      random_body = Faker::Lorem.sentance(4)
+
+      random_pw = "fakepassword"
+      random_email = Faker::Internet.email
+      project = Project.new(title: random_title, client: random_client, body: random_body)
+      
+      user = User.create(password: random_pw, email: random_email)
+      user.projects << project
+
     end
   end
 

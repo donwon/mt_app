@@ -1,10 +1,8 @@
 
-  <h3><%= link_to 'Add a Discussion', new_project_discussion_path(@project) %></h3>
-  
+
+
   <% @project.discussions.each do |discussion| %>
-    <p>  
-      <strong>Topic:</strong>
-      <%= discussion.topic %>
+      <div class="well"><p>  
       <strong>Title:</strong>
       <%= discussion.title %>
     </p>
@@ -36,12 +34,14 @@
   <%= link_to 'Destroy',project_discussion_comment_path(@project, discussion, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %> 
 
-  <h3> Add a Comment </h3>
+  <div class="form-group">  
   <%= form_for [@project, discussion, @comment] do |f| %>
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body , class: "form-control" %>
 
-    <%= f.submit %>
-  <% end %>
+    <%= f.submit "Submit Comment", class: "btn btn-default" %>
+  <% end %>  </div>
+
     <% end %>
+
 

@@ -1,19 +1,21 @@
 <h3> Add a discussion </h3>
 <p><%#= link_to 'Add Task', new_project_task_path %>
+
+<div class= "form-group">
   <%= form_for [@project, @discussion] do |f| %>
   
   <div class="form-field">
     <%= f.label :topic %><br>
-    <%= f.text_field :topic %>
+    <%= f.text_field :topic , class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title , class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body , class: "form-control"%>
   </div>
       
       <%# hidden_field_tag "discussion[user_ids][]", nil %>
@@ -23,7 +25,8 @@
       <%#end%>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Submit Reply", class: "btn btn-default"  %>
    </div>
 
 <% end %>
+</div>

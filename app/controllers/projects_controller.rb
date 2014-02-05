@@ -6,6 +6,18 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+
+  @projects_recent = Project.order("updated_at DESC")
+
+  recent_ids = []
+  @projects_recent.each {|x| recent_ids << x.id }
+  @projects_by_hits = Project.x_most_recent(10)
+  Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+  Rails.logger.info recent_ids
+
+  @projects_left_over = @projects_by_hits.select { |x| !recent_ids.include?(x.id) }
+
+
   end
 
   # GET /projects/1
@@ -14,7 +26,8 @@ class ProjectsController < ApplicationController
     @task = Task.new
     @discussion = @project.discussions
     @comment=Comment.new
-
+    @project.hit_counter += 1
+    @project.save
     
     Rails.logger.info ">>>>>>>>>>>>>>"
     Rails.logger.info @project.tasks

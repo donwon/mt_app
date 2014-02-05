@@ -1,41 +1,36 @@
 
-  <div class="projects container">
-      <h2> Projects Show Detail Page</h2>
-
-            <p>
-              <strong>Title:</strong>
+    <h2>
+              <strong></strong>
               <%= @project.title %>
-            </p>
-            <p>
+    </h2>
+    <p>
               <strong>Client:</strong>
               <%= @project.client %>
-            </p>
-            <p>
+    </p>
+    <p>
               <strong>Body:</strong>
               <%= @project.body %>
-            </p>
-            <p>
+    </p>
+    <p>
               <strong>Status:</strong>
               <%= @project.status %>
-            </p>
-            <p>
+    </p>
+    <p>
               <strong>Category:</strong>
               <%= @project.category %>
-            </p>
-            <p>
-              <strong>Hit counter:</strong>
+    </p>
+    <p>
+              <strong>Views:</strong>
               <%= @project.hit_counter %>
-            </p>
-            <%= link_to 'Edit', edit_project_path(@project) %> |
-            <%= link_to 'Back', projects_path %> |
-            <%= link_to 'Destroy', @project , method: :delete, data: { confirm: 'Are you sure?' } %> |
-<hr>          
-          <h2>Discussions</h2>
+    </p>
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+    <%= link_to 'Back', projects_path %> |
+    <%= link_to 'Destroy', @project , method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <hr>   
+            <h2>Discussions <%= link_to 'Add a Discussion', new_project_discussion_path(@project), class: "btn btn-primary pull-right" %></h2>
           <%= render "discussions" %>
-        </div>
-        <div class="tasks container">
-             <%= render "tasks" %>
-        </div>
+  
+    
 
 
 

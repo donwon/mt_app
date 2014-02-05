@@ -20,6 +20,12 @@ gem 'letter_opener', group: :development
 
 gem 'rails_12factor', group: :production
 
+
+
+  gem 'jquery-ui-rails'
+  gem 'jquery-modal-rails'
+
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

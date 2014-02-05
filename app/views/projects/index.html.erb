@@ -1,37 +1,55 @@
-<h1>Listing projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Client</th>
-      <th>Body</th>
-      <th>Status</th>
-      <th>Category</th>
-      <th>Hit counter</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <div class="buffer">
+        <h2 class="navbar-fixed-top">THE REPOSITORY
+          <%= link_to 'CREATE NEW REPO', new_project_path, class: "btn btn-primary back-lit-btn pull-right" %>
+        </h2>
+      </div>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.client %></td>
-        <td><%= project.body %></td>
-        <td><%= project.status %></td>
-        <td><%= project.category %></td>
-        <td><%= project.hit_counter %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-sm-10 col-md-10"> 
+      <br><br><br>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <h3>Most Recent Repositories</h3>
+        <% @projects_recent.each do |project| %>
+            
+            <!-- <div class="well"> -->
+
+          <h4><i class="fa fa-book fa-2x"></i><%= project.title %></h4>
+          <br><%= project.updated_at %> | views: <%= project.hit_counter %> |
+          <br><strong>Created By:</strong> <%= project.user.email %> 
+          <br><strong>Category:</strong> <%= project.category %>
+          <br><%= project.body.truncate(140) %>
+          <br><%= link_to 'Show', project, class: "btn btn-info back-lit-btn" %>  
+          <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info back-lit-btn" %>  
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger back-lit-btn" %> 
+     <!-- </div> -->
+        <% end %>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6"><div class="well">
+        <h3>Most Popular Repositories</h3>
+        <% @projects_by_hits.each do |project| %>
+
+          <p>|Views: <%= project.hit_counter %> |<span class="glyphicon glyphicon-book"></span>
+          <%= link_to project.title, project %>
+           </p>
+          <hr>
+        <% end %>
+    </div>
+    </div>
+
+  </div>
+
+
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+

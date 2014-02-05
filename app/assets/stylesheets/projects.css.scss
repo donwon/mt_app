@@ -1,7 +1,14 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.projects {
-  float:left; 
-  width: 50%
+.buffer {
+  height: 50px;
+  h2 {
+    padding-top: 10px;
+    margin-right:2%;
+    margin-left:2%;
+    top: 30px; 
+    background: white; 
+    height: 50px;
+  }
 }
