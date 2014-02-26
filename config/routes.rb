@@ -2,12 +2,13 @@ MtApp::Application.routes.draw do
 
   devise_for :users
   resources :projects do 
+    resources :comments, only: [:create, :destroy] 
     resources :tasks do
       resources :assignments
     end
     
     resources :discussions do
-      resources :comments
+      resources :comments, only: [:create, :destroy] 
     end
 
   end

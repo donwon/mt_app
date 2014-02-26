@@ -1,8 +1,5 @@
-
-
-
   <% @project.discussions.each do |discussion| %>
-      <div class="well"><p>  
+
       <strong>Title:</strong>
       <%= discussion.title %>
     </p>
@@ -15,8 +12,9 @@
       <%= discussion.body %>
     </p>
       <%= link_to 'Destroy',project_discussion_path(@project, discussion), method: :delete, data: { confirm: 'Are you sure?' } %>
+<hr>
+<h3> Discussion Comments </h3>
 
-<h4> Comments </h4>
   <% discussion.comments.each do |comment| %>
   <p>
     <strong>body:</strong>

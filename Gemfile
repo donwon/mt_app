@@ -18,6 +18,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'quiet_assets'
 gem 'devise'
 gem 'letter_opener', group: :development
+gem 'cancan'
 
 gem 'rails_12factor', group: :production
 

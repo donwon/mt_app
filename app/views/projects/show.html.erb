@@ -23,12 +23,23 @@
               <strong>Views:</strong>
               <%= @project.hit_counter %>
     </p>
-    <%= link_to 'Edit', edit_project_path(@project) %> |
-    <%= link_to 'Back', projects_path %> |
-    <%= link_to 'Destroy', @project , method: :delete, data: { confirm: 'Are you sure?' } %> |
+    
+    <%= link_to 'Edit', edit_project_path(@project) %>
+    <%if can? :manage, @project %>
+    | <%= link_to 'Back', projects_path %> |
+      <%= link_to 'Destroy', @project , method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <%end%>
+  
+  <hr><h3>Poject Comments</h3>
+  <%= render "comments/comments_form" %>
+  <br>
+
   <hr>   
-            <h2>Discussions <%= link_to 'Add a Discussion', new_project_discussion_path(@project), class: "btn btn-primary pull-right" %></h2>
+  <div class="well">
+    <h2>Discussions <%= link_to 'Add a Discussion', new_project_discussion_path(@project), class: "btn btn-primary pull-right" %></h2>
           <%= render "discussions" %>
+  </div>
+
   
     
 

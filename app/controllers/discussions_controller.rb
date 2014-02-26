@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
 before_action :authenticate_user!
 
+
 def new
    @project = Project.find(params[:project_id])
    @discussion = Discussion.new

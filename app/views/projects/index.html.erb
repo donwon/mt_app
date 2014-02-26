@@ -28,7 +28,7 @@
           <br><strong>Category:</strong> <%= project.category %>
           <br><%= project.body.truncate(140) %>
           <br><%= link_to 'Show', project, class: "btn btn-info back-lit-btn" %>  
-          <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info back-lit-btn" %>  
+          <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info back-lit-btn", remote: true %>  
           <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger back-lit-btn" %> 
      <!-- </div> -->
         <% end %>

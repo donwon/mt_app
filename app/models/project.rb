@@ -7,7 +7,8 @@ has_many :users, through: :tasks, source: :user
 has_many :discussions
 has_many :users, through: :discussions, source: :user
 
-has_many :comments, through: :discussions, source: :comment
+has_many :comments, as: :commentable
+has_many :commenters, through: :comments, source: :user
 
 after_initialize :set_defaults
   #Scope that orders projects by hit count
